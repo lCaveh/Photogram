@@ -1,4 +1,3 @@
-
 import React from 'react'
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
@@ -12,7 +11,8 @@ import Footer from './components/Footer'
 import { Provider } from 'react-redux'
 import store from './store'
 
-const router = (
+function App() {
+return (
   <Provider store={store}>
     <BrowserRouter>
       <div>
@@ -28,5 +28,5 @@ const router = (
     </BrowserRouter>
   </Provider>
 )
-
+}
 export default App;

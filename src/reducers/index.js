@@ -5,11 +5,23 @@ import posts from './posts'
 import comments from './comments'
 import user from './user'
 
-const rootReducer = combineReducers({
-  routing: routerReducer,
-  posts,
-  comments,
-  user
-})
+const initialState = {
+    posts,
+    comments,
+    user
+  };
+  function rootReducer(state = initialState, action) {
+    if (action.type === ADD_ARTICLE) {
+      return Object.assign({}, state, {
+        articles: state.articles.concat(action.payload)
+      });
+    }
+    if (action.type === "DATA_LOADED") {
+      return Object.assign({}, state, {
+        remoteArticles: state.remoteArticles.concat(action.payload)
+      });
+    }
+    return state;
+  }
 
 export default rootReducer
