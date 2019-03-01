@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import AllPosts from './components/AllPosts'
-import PrivatePosts from './components/PrivatePosts'
-import Profile from './components/Profile'
-import Post from './components/Post'
-import Header from './components/Header'
-import Footer from './components/Footer'
+import AllPosts from './components/AllPosts';
+import PrivatePosts from './components/PrivatePosts';
+import Profile from './components/Profile';
+import Post from './components/Post';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import { fetchUser } from "./actions/actionCreator";
 
 import { connect } from "react-redux";
 
