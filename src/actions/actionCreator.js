@@ -1,4 +1,4 @@
-import { postsRef, commentsRef, authRef, provider } from "../config/firebase";
+import { postsRef, commentsRef, authRef, provider } from "../firebase";
 import { FETCH_POSTS, FETCH_COMMENTS, FETCH_USER } from "./types";
 
 export const addPost = (newPost, uid) => async dispatch => {

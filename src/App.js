@@ -8,25 +8,27 @@ import Post from './components/Post'
 import Header from './components/Header'
 import Footer from './components/Footer'
 
-import { Provider } from 'react-redux'
-import store from './store'
+import { connect } from "react-redux";
 
-function App() {
-return (
-  <Provider store={store}>
-    <BrowserRouter>
-      <div>
-        <Header />
-        <Footer />
-        <Switch>
-          <Route path='/' component={AllPosts} exact />
-          <Route path='/privateposts' component={PrivatePosts} />
-          <Route path="/profile" component={Profile} />
-          <Route path="/post/:id" component={Post} />
-        </Switch>
-      </div>
-    </BrowserRouter>
-  </Provider>
-)
+class App extends Component {
+  componentWillMount() {
+    this.props.fetchUser();
+  }
+  render() {
+    return (
+        <BrowserRouter>
+          <div>
+            <Header />
+            <Footer />
+            <Switch>
+              <Route path='/' component={AllPosts} exact />
+              <Route path='/privateposts' component={PrivatePosts} />
+              <Route path="/profile" component={Profile} />
+              <Route path="/post/:id" component={Post} />
+            </Switch>
+          </div>
+        </BrowserRouter>
+    )
+  }
 }
-export default App;
+export default connect(null, { fetchUser })(App);
