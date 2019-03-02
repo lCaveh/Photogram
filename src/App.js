@@ -7,6 +7,8 @@ import Profile from './components/Profile';
 import Post from './components/Post';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import AddPost from './components/AddPost';
+
 import { fetchUser } from "./actions/actionCreator";
 
 import { connect } from "react-redux";
@@ -26,6 +28,7 @@ class App extends Component {
               <Route path='/privateposts' component={PrivatePosts} />
               <Route path="/profile" component={Profile} />
               <Route path="/post/:id" component={Post} />
+              <Route path="/addpost" component={AddPost} />
             </Switch>
           </div>
         </BrowserRouter>
