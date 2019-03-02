@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../actions/actionCreator";
 
-class AddPost extends React.Component {
+class AddPost extends Component {
     state = {
         addFormVisible: false,
         addFormValue: ""
@@ -32,7 +32,7 @@ class AddPost extends React.Component {
                         onChange={this.handleInputChange}
                         type="text"
                     />
-                   
+                    <button type="submit">submit</button>
                 </div>
             </form>
         )
