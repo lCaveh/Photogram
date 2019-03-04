@@ -38,9 +38,9 @@ class AddPost extends Component {
         )
     }
 }
-const mapStateToProps = ({ data, auth }) => {
+const mapStateToProps = ({ posts, auth }) => {
     return {
-        data,
+        posts,
         auth
     };
 };
