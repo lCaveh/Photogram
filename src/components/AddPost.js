@@ -1,42 +1,47 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../actions/actionCreator";
+import { timingSafeEqual } from "crypto";
 
 class AddPost extends Component {
-    state = {
-        addFormVisible: false,
-        addFormValue: ""
-    };
+
     componentWillMount() {
         const { auth } = this.props;
-        this.props.fetchPosts(auth.uid);
+        this.props.fetchUser();
     }
-    handleInputChange = event => {
-        this.setState({ addFormValue: event.target.value });
-    };
-    handleFormSubmit = event => {
-        const { addFormValue } = this.state;
-        const { addPost, auth } = this.props;
-        event.preventDefault();
-        addPost({ title: addFormValue }, auth.uid);
-        this.setState({ addFormValue: "" });
-    };
-    render() {
-        const { addFormVisible, addFormValue } = this.state;
-        return (
-            <form onSubmit={this.handleFormSubmit}>
-                <div >
-                    <i >note_add</i>
-                    <input
-                        value={addFormValue}
-                        onChange={this.handleInputChange}
-                        type="text"
-                    />
-                    <button type="submit">submit</button>
-                </div>
-            </form>
-        )
+
+handleFormSubmit = event => {
+    event.preventDefault();
+    const post={
+        image: event.target[0].value,
+        content: event.target[1].value,
+        likes: [],
+        comments: 0,
+        userName: this.props.auth.displayName,
+        userImage: this.props.auth.photoURL
     }
+    const { addPost, auth } = this.props;
+    addPost(post, auth.uid);
+    event.target[0].value= "";
+    event.target[1].value= "";
+}
+
+render(){
+
+    return(
+        <div>{this.props.auth ?
+        <form onSubmit={this.handleFormSubmit}>
+            <label>Image:</label>
+            <input />
+            <label>Content:</label>
+            <input />
+            <button type="submit">Submit</button>
+        </form>:
+        <h3>Please login to be able write a post</h3>
+        }
+        </div>
+    )
+}
 }
 const mapStateToProps = ({ posts, auth }) => {
     return {
