@@ -8,10 +8,10 @@ export const addPost = (newPost, uid) => async dispatch => {
     .set(newPost);
 };
 
-export const completePost = (completePostId, uid) => async dispatch => {
+export const removePost = (removePostId, uid) => async dispatch => {
   postsRef
     .child(uid)
-    .child(completePostId)
+    .child(removePostId)
     .remove();
 };
 
@@ -31,10 +31,10 @@ export const addComment = (newComment, uid) => async dispatch => {
       .set(newComment);
   };
   
-  export const completeComment = (completeCommentId, uid) => async dispatch => {
+  export const removeComment = (removeCommentId, uid) => async dispatch => {
     commentsRef
       .child(uid)
-      .child(completeCommentId)
+      .child(removeCommentId)
       .remove();
   };
   
