@@ -10,6 +10,9 @@ function Footer(props) {
                 <NavLink to="/addpost">
                     <p>Add-Post</p>
                 </NavLink>
+                <NavLink to="/privateposts">
+                    <p>Private-Posts</p>
+                </NavLink>
             </nav>
         </div>
     )

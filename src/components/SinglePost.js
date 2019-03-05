@@ -6,11 +6,13 @@ render(){
 console.log(this.props)
     return (
         <div>
-            {/* <h1>Post Component</h1>
-          
-            {this.props.key}
-            {this.props.post.content} */}
+            <h1>Post Component</h1>
+          <p>
 
+            {this.props.key}
+            {this.props.post.content}
+
+          </p>
         </div>
     )
 }
