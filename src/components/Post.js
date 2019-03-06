@@ -1,20 +1,32 @@
 import React, { Component } from "react";
-import Comment from './Comment'
+import { connect } from "react-redux";
+import * as actions from "../actions/actionCreator";
+import { auth } from "firebase";
 
 class Post extends Component {
-render(){
-    console.log(this.props)
-    return (
-        <div>
-            <p>
-            post   </p>
-            {/* <h1>Post Component</h1>
-          
-            {this.props.key}
-            {this.props.post.content} */}
+    componentWillMount() {
+// this.props.fetchComments(this.props.match.params.id)
 
-        </div>
-    )
+    }
+    render() {
+        console.log("post:",this.props)
+        return (
+            <div>
+                <p>
+                    {this.props.match.params.id}   </p>
+                <p>
+                    {this.props.posts[`${this.props.match.params.id}`].image}
+
+                </p>
+<button>Add Comment</button>
+            </div>
+        )
+    }
 }
-}
-export default Post
+const mapStateToProps = ({ posts, auth }) => {
+    return {
+        posts,
+        auth
+    };
+};
+export default connect(mapStateToProps, actions)(Post);

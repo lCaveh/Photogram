@@ -5,10 +5,7 @@ import SinglePost from './SinglePost'
 
 class PrivatePosts extends Component {
     componentWillMount() {
-        setTimeout(() => { //this timeout allows the signin action to complete during page refresh [TEMP FIX]
-            console.log(this.props);
-            if (this.props.auth) { this.props.fetchPosts(this.props.auth.uid) };
-        }, 300)
+if(this.props.auth){this.props.fetchPosts(this.props.auth.uid)}
     }
     render() {
         const foundPosts = this.props.posts;
