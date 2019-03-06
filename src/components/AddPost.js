@@ -5,6 +5,7 @@ import * as actions from "../actions/actionCreator";
 class AddPost extends Component {
 
     componentWillMount() {
+        console.log(this.props);
         this.props.fetchUser();
     }
 
