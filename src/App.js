@@ -20,7 +20,7 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div>
+        <div className="uk-container">
           <Header />
           <Footer />
           <Switch>
@@ -28,7 +28,6 @@ class App extends Component {
             <Route path='/privateposts' component={PrivatePosts} />
             <Route path="/profile" component={Profile} />
             <Route path="/post/:id" component={Post} />
-            <Route path="/addpost" component={AddPost} />
           </Switch>
         </div>
       </BrowserRouter>

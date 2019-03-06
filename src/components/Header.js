@@ -6,12 +6,19 @@ class Header extends Component {
     render() {
 
         return (
-            <div>
-                <h1>Header Component</h1>
-                {!this.props.auth ?
-                    <h3 onClick={this.props.signIn}>Login</h3>:
-                    <h3 onClick={this.props.signOut}>{this.props.auth.displayName}</h3>
-                }
+            <div className="header">
+                <nav className="uk-navbar uk-navbar-container uk-margin">
+
+                    <div className="uk-navbar-left">
+                        <span className="uk-navbar-toggle">{!this.props.auth ? (
+                            <span onClick={this.props.signIn}>LogIn</span>
+                        ) : (
+                                <span onClick={this.props.signOut}>
+                                    {this.props.auth.displayName}{" "}
+                                </span>
+                            )}</span>
+                    </div>
+                </nav>
             </div>
         )
     }
@@ -20,4 +27,4 @@ function mapStateToProps({ auth }) {
     return { auth };
 }
 
-export default connect(mapStateToProps, { signIn, signOut})(Header);
+export default connect(mapStateToProps, { signIn, signOut })(Header);
