@@ -2,27 +2,22 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../actions/actionCreator";
 
-class AddPost extends Component {
+class AddComment extends Component {
 
     componentWillMount() {
-        console.log(this.props);
         this.props.fetchUser();
     }
 
     handleFormSubmit = event => {
         event.preventDefault();
-        const post = {
-            image: event.target[0].value,
-            content: event.target[1].value,
+        const comment = {
+            content: event.target[0].value,
             likes: [""],
-            comments: 0,
             userName: this.props.auth.displayName,
             userImage: this.props.auth.photoURL
         }
-        const { addPost, auth } = this.props;
-        addPost(post, auth.uid);
+        this.props.addComment(comment, this.props.id);
         event.target[0].value = "";
-        event.target[1].value = "";
     }
 
     render() {
@@ -30,13 +25,11 @@ class AddPost extends Component {
         return (
             <div>{this.props.auth ?
                 <form onSubmit={this.handleFormSubmit}>
-                    <label>Image:</label>
-                    <input />
                     <label>Content:</label>
                     <input />
                     <button type="submit">Submit</button>
                 </form> :
-                <h3>Please login to be able write a post</h3>
+                <div/>
             }
             </div>
         )
@@ -48,4 +41,4 @@ const mapStateToProps = ({ posts, auth }) => {
         auth
     };
 };
-export default connect(mapStateToProps, actions)(AddPost);
+export default connect(mapStateToProps, actions)(AddComment);

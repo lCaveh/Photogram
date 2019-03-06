@@ -8,13 +8,12 @@ class PrivatePosts extends Component {
 if(this.props.auth){this.props.fetchPosts(this.props.auth.uid)}
     }
     render() {
-        const foundPosts = this.props.posts;
         return (
             <div>{this.props.posts === "loading" ?
                 <div>Loading</div> :
                 <div>{
-                    Object.keys(foundPosts).map((key) => {
-                        return <SinglePost key={key} id={key} post={foundPosts[key]} />
+                    Object.keys(this.props.posts).map((key) => {
+                        return <SinglePost key={key} id={key} post={this.props.posts[key]} />
                     })
                 }
                 </div>
