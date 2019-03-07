@@ -4,13 +4,20 @@ import { NavLink } from "react-router-dom"
 function Footer(props) {
 
     return (
-        <div>
-            <h1>Footer Component</h1>
-            <nav>
-                <NavLink to="/addpost">
-                    <p>Add-Post</p>
-                </NavLink>
+        <div className="footer">
+            <nav className="uk-navbar uk-navbar-container uk-margin">
+                <div className="uk-navbar-left">
+                    <NavLink to="/profile" className="uk-navbar-toggle">Profile</NavLink>
+                </div>
+                <div className="uk-navbar-left">
+                    <NavLink to="/privateposts" className="uk-navbar-toggle">Private</NavLink>
+                </div>
+                <div className="uk-navbar-left">
+                    <NavLink to="/" className="uk-navbar-toggle">All Posts</NavLink>
+                </div>
+
             </nav>
+
         </div>
     )
 }

@@ -5,7 +5,7 @@ function AllPosts(props) {
     return (
         <div>
             <h1>AllPosts Component</h1>
-            <Post/>
+            {/* <Post/> */}
         </div>
     )
 }

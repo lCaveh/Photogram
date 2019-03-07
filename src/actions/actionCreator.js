@@ -76,6 +76,7 @@ export const signOut = () => dispatch => {
   authRef
     .signOut()
     .then(() => {
+      console.log("done")
       // Sign-out successful.
     })
     .catch(error => {
