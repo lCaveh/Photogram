@@ -5,13 +5,15 @@ import { storage } from '../firebase'
 // import { database } from "firebase";
 
 class AddPost extends Component {
-constructor(state) {
-    super(state);
-    this.state={
-        picture:null,
-        pictureUrl:null
+    constructor(state) {
+        super(state);
+        this.state = {
+            picture: null,
+            pictureUrl: null,
+            image: null,
+            content: ""
+        }
     }
-}
     componentWillMount() {
         console.log(this.props);
         this.props.fetchUser();
@@ -19,53 +21,52 @@ constructor(state) {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        const mainImage=storage.child(`posts/kkkkk`)
-        mainImage.put(this.picture).then((snapshot)=>{
-            mainImage.getDownloadURL().then((url)=>{
-                this.pictureUrl= url;
+        this.setState({
+            content: event.target[1].value
+        });
+        const mainImage = storage.ref().child(`posts/${this.state.picture.name}`);
+        mainImage.put(this.state.picture).then((snapshot) => {
+            mainImage.getDownloadURL().then((url) => {
+                this.setState({
+                    image: url
+                })
+                const post = {
+                    image: this.state.image,
+                    content: this.state.content,
+                    likes: [""],
+                    comments: 0,
+                    userName: this.props.auth.displayName,
+                    userImage: this.props.auth.photoURL
+                }
+                
+                this.props.addPost(post, this.props.auth.uid)
             })
         })
-//         const image = event.target[0].files[0];
-// console.log(image)
-// const uploadTask= storage(`images/${image.name}`).put(image);
-        // const post = {
-        //     image: event.target[0].value,
-        //     content: event.target[1].value,
-        //     likes: [""],
-        //     comments: 0,
-        //     userName: this.props.auth.displayName,
-        //     userImage: this.props.auth.photoURL
-        // }
-        // const { addPost, auth } = this.props;
-        // addPost(post, auth.uid);
-        // event.target[0].value = "";
-        // event.target[1].value = "";
+        event.target[1].value=''; 
     }
-    // handleChange = event => {
-    //     console.log(event.target.files[0])
-    // }
-displayPicture(event){
-    let reader = new FileReader();
-    let file = event.target.files[0];
-    reader.onloadend = (file)=> {
-        this.setState({
-            picture : file,
-            pictureUrl: reader.result
-        })
+
+    displayPicture(event) {
+        let reader = new FileReader();
+        let file = event.target.files[0];
+        reader.onloadend = () => {
+            this.setState({
+                picture: file,
+                pictureUrl: reader.result
+            })
+        }
+        reader.readAsDataURL(file)
+
     }
-    reader.readAsDataURL(file)
-    
-}
     render() {
-// delete this.props.input.value;
+        // delete this.props.input.value;
         return (
             <div>{this.props.auth ?
                 <form onSubmit={this.handleFormSubmit}>
                     <label>Image:</label>
                     <img src={this.state.pictureUrl}></img>
                     <input type='file'
-                    {...this.props.input}
-                     onChange={event=>{this.displayPicture(event)}}/>
+                        {...this.props.input}
+                        onChange={event => { this.displayPicture(event) }} />
                     <label>Content:</label>
                     <input />
                     <button type="submit">Submit</button>
