@@ -28,7 +28,8 @@ class AddPost extends Component {
         mainImage.put(this.state.picture).then((snapshot) => {
             mainImage.getDownloadURL().then((url) => {
                 this.setState({
-                    image: url
+                    image: url,
+                    pictureUrl: ''
                 })
                 const post = {
                     image: this.state.image,
@@ -62,14 +63,14 @@ class AddPost extends Component {
         return (
             <div>{this.props.auth ?
                 <form onSubmit={this.handleFormSubmit}>
-                    <label>Image:</label>
+                   
                     <img src={this.state.pictureUrl}></img>
                     <input type='file'
                         {...this.props.input}
-                        onChange={event => { this.displayPicture(event) }} />
+                        onChange={event => { this.displayPicture(event) }} /><br/>
                     <label>Content:</label>
-                    <input />
-                    <button type="submit">Submit</button>
+                    <textarea className="uk-textarea"></textarea><br/><br/>
+                    <button className="uk-button uk-button-default" type="submit">Submit</button>
                 </form> :
                 <h3>Please login to be able write a post</h3>
             }
