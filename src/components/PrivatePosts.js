@@ -18,20 +18,16 @@ class PrivatePosts extends Component {
                     <div className="uk-child-width-expand@s uk-text-center" data-uk-grid>
                         {
                             Object.keys(this.props.posts).map((key) => {
-
                                 return <div  key={key}>
                                     <div className="uk-card uk-card-default uk-card-body">
                                         <SinglePost id={key} post={this.props.posts[key]} />
-
                                     </div>
                                 </div>
                             })
                         }
                     </div>
                 }
-
             </div>
-
         )
     }
 }

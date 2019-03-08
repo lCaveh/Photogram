@@ -13,13 +13,13 @@ class Header extends Component {
                             <span onClick={this.props.signIn}>LogIn</span>
                         ) : (
                                 <span onClick={this.props.signOut}>
-                                                  <img
-                className="uk-comment-avatar uk-border-circle"
-                src={this.props.auth.photoURL}
-                width="20"
-                height="20"
-                alt="Border circle"
-              />  {this.props.auth.displayName}
+                                    <img
+                                        className="uk-comment-avatar uk-border-circle"
+                                        src={this.props.auth.photoURL}
+                                        width="20"
+                                        height="20"
+                                        alt="Border circle"
+                                    />  {this.props.auth.displayName}
                                 </span>
                             )}</span>
                     </div>

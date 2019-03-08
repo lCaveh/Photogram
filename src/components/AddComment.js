@@ -26,8 +26,8 @@ class AddComment extends Component {
             <div>{this.props.auth ?
                 <form onSubmit={this.handleFormSubmit}>
                     <label>Content:</label>
-                    <input />
-                    <button type="submit">Submit</button>
+                    <textarea className="uk-textarea"/><br/><br/>
+                    <button className="uk-button uk-button-default" type="submit">Submit</button>
                 </form> :
                 <div/>
             }

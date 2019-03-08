@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../actions/actionCreator";
 import { storage } from '../firebase'
-// import { database } from "firebase";
 
 class AddPost extends Component {
     constructor(state) {
@@ -15,7 +14,6 @@ class AddPost extends Component {
         }
     }
     componentWillMount() {
-        console.log(this.props);
         this.props.fetchUser();
     }
 
@@ -59,11 +57,9 @@ class AddPost extends Component {
 
     }
     render() {
-        // delete this.props.input.value;
         return (
             <div>{this.props.auth ?
                 <form onSubmit={this.handleFormSubmit}>
-                   
                     <img src={this.state.pictureUrl}></img>
                     <input type='file'
                     accept="image/png, image/jpeg"

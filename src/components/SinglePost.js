@@ -16,8 +16,8 @@ class SinglePost extends Component {
             </div>
           </header>
           <div className="uk-comment-body">
-          <Link to={`/post/${this.props.id}`}>
-            <img className="uk-comment-avatar" src={this.props.post.image} alt="" />
+            <Link to={`/post/${this.props.id}`}>
+              <img className="uk-comment-avatar" src={this.props.post.image} alt="" />
             </Link>
           </div>
         </div>
