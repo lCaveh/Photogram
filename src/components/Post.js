@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../actions/actionCreator";
-import { auth } from "firebase";
 import AddComment from './AddComment'
 import Comment from './Comment'
 
@@ -9,10 +8,8 @@ import Comment from './Comment'
 class Post extends Component {
     componentWillMount() {
         this.props.fetchComments(this.props.match.params.id)
-
     }
     render() {
-        // console.log("post:", this.props)
         const post = this.props.posts[this.props.match.params.id]
         return (
             <div>
