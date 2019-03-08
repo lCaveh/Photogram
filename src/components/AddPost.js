@@ -66,6 +66,7 @@ class AddPost extends Component {
                    
                     <img src={this.state.pictureUrl}></img>
                     <input type='file'
+                    accept="image/png, image/jpeg"
                         {...this.props.input}
                         onChange={event => { this.displayPicture(event) }} /><br/>
                     <label>Content:</label>
