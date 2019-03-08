@@ -4,7 +4,6 @@ import { signIn, signOut } from "../actions/actionCreator";
 
 class Header extends Component {
     render() {
-
         return (
             <div className="header">
                 <nav className="uk-navbar uk-navbar-container uk-margin">
@@ -17,10 +16,10 @@ class Header extends Component {
                                                   <img
                 className="uk-comment-avatar uk-border-circle"
                 src={this.props.auth.photoURL}
-                width="40"
-                height="40"
+                width="20"
+                height="20"
                 alt="Border circle"
-              />{this.props.auth.displayName}
+              />  {this.props.auth.displayName}
                                 </span>
                             )}</span>
                     </div>

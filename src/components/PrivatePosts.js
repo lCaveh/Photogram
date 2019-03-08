@@ -2,23 +2,36 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../actions/actionCreator";
 import SinglePost from './SinglePost'
+import UIkit from "uikit";
+
+UIkit.grid();
 
 class PrivatePosts extends Component {
     componentWillMount() {
-if(this.props.auth){this.props.fetchPosts(this.props.auth.uid)}
+        if (this.props.auth) { this.props.fetchPosts(this.props.auth.uid) }
     }
     render() {
         return (
-            <div>{this.props.posts === "loading" ?
-                <div>Loading</div> :
-                <div>{
-                    Object.keys(this.props.posts).map((key) => {
-                        return <SinglePost key={key} id={key} post={this.props.posts[key]} />
-                    })
+            <div>
+                {this.props.posts === "loading" ?
+                    <div className="uk-child-width-expand@s uk-text-center" data-uk-grid>Loading</div> :
+                    <div className="uk-child-width-expand@s uk-text-center" data-uk-grid>
+                        {
+                            Object.keys(this.props.posts).map((key) => {
+
+                                return <div  key={key}>
+                                    <div className="uk-card uk-card-default uk-card-body">
+                                        <SinglePost id={key} post={this.props.posts[key]} />
+
+                                    </div>
+                                </div>
+                            })
+                        }
+                    </div>
                 }
-                </div>
-            }
+
             </div>
+
         )
     }
 }
