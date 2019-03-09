@@ -42,7 +42,7 @@ class Post extends Component {
                         }
                     </div>
                 }
-                <AddComment id={this.props.match.params.id}></AddComment>
+                <AddComment id={this.props.match.params.id}></AddComment><br/><br/>
             </div>
         )
     }

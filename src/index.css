@@ -18,3 +18,20 @@ code {
   bottom: 0%;
   height: 10%;
 }
+.comment-container {
+  display: grid;
+  grid-template-columns: 20px 10px auto 10px 20px;
+  grid-template-rows: 40% auto;
+}
+.comment-image {
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+.comment-content {
+  grid-column-start: 3;
+  grid-column-end: 4;
+}
+.comment-like {
+  grid-column-start: 5;
+  grid-column-end: 6;
+}

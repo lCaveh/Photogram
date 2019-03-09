@@ -9,8 +9,8 @@ class SinglePost extends Component {
   render() {
     const backStyle = {
       backgroundImage: `url(${this.props.post.image})`
-      
-  };
+
+    };
     return (
       <div>
         <div className="uk-comment">
@@ -24,8 +24,8 @@ class SinglePost extends Component {
           </header>
           <div className="uk-comment-body">
             <Link to={`/post/${this.props.id}`}>
-            <div className="uk-height-small uk-background-cover uk-light uk-flex uk-flex-top" data-uk-parallax="bgy: -20" style={backStyle}>
-                            </div>
+              <div className="uk-height-small uk-background-cover uk-light uk-flex uk-flex-top" data-uk-parallax="bgy: -20" style={backStyle}>
+              </div>
             </Link>
           </div>
         </div>
