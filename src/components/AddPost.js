@@ -69,7 +69,7 @@ class AddPost extends Component {
                     <textarea className="uk-textarea"></textarea><br/><br/>
                     <button className="uk-button uk-button-default" type="submit">Submit</button>
                 </form> :
-                <h3>Please login to be able write a post</h3>
+                <p>Please login to be able write a post</p>
             }
             </div>
         )
