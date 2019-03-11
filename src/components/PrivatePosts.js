@@ -15,7 +15,7 @@ class PrivatePosts extends Component {
             <div>
                 {this.props.posts === "loading" ?
                     <div className="uk-child-width-expand@s uk-text-center" data-uk-grid>Loading</div> :
-                    <div className="uk-child-width-expand@s uk-text-center" data-uk-grid>
+                    <div className="uk-grid-match uk-child-width-1-3@m uk-text-center" data-uk-grid>
                         {
                             Object.keys(this.props.posts).map((key) => {
                                 return <div  key={key}>
@@ -27,6 +27,7 @@ class PrivatePosts extends Component {
                         }
                     </div>
                 }
+                <br/><br/><br/>
             </div>
         )
     }

@@ -7,7 +7,6 @@ import Profile from './components/Profile';
 import Post from './components/Post';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import AddPost from './components/AddPost';
 
 import { fetchUser } from "./actions/actionCreator";
 

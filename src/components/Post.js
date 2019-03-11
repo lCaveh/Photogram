@@ -10,6 +10,7 @@ class Post extends Component {
         this.props.fetchComments(this.props.match.params.id)
     }
     render() {
+        console.log('post cp : ' ,this.props)
         const post = this.props.posts[this.props.match.params.id]
         return (
             <div>
