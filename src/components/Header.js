@@ -7,7 +7,6 @@ class Header extends Component {
         return (
             <div className="header">
                 <nav className="uk-navbar uk-navbar-container uk-margin">
-
                     <div className="uk-navbar-left">
                         <span className="uk-navbar-toggle">{!this.props.auth ? (
                             <span onClick={this.props.signIn}>LogIn</span>

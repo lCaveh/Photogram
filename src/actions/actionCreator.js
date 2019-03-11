@@ -1,5 +1,5 @@
 import { postsRef, commentsRef, authRef, provider } from "../firebase";
-import { FETCH_POSTS, FETCH_COMMENTS, FETCH_USER } from "./types";
+import { FETCH_POSTS, FETCH_COMMENTS, FETCH_USER, FETCH_ALL_POSTS } from "./types";
 
 export const addPost = (newPost, uid) => async dispatch => {
   postsRef
@@ -19,6 +19,15 @@ export const fetchPosts = uid => async dispatch => {
   postsRef.child(uid).on("value", snapshot => {
     dispatch({
       type: FETCH_POSTS,
+      payload: snapshot.val()
+    });
+  });
+};
+
+export const fetchAllPosts = () => async dispatch => {
+  postsRef.limitToLast(100).on("value", snapshot => {
+    dispatch({
+      type: FETCH_ALL_POSTS,
       payload: snapshot.val()
     });
   });
