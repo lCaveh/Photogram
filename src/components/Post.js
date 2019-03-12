@@ -36,18 +36,19 @@ class Post extends Component {
               </div>
             </header>
             <div className="uk-comment-body">
-              <img className="uk-comment-avatar" src={post.image} alt="" />
+              <img className="uk-comment-avatar post-image" src={post.image} alt=""/>
             </div>
-            {this.props.auth ? (
+            {this.props.auth ? 
               <div>
-                <span>♡</span>
+                {post.likes.includes(this.props.auth.uid)?
+                <span>❤️</span>:<span>🖤</span>}
                 <span>💬</span>
                 <span>🗑️</span>
                 <span>🖊️</span>
               </div>
-            ) : (
+             : 
               <div />
-            )}
+            }
           </div>
           <p>{post.content}</p>
         </div>
@@ -68,13 +69,12 @@ class Post extends Component {
           </div>
         )}
         <AddComment id={this.props.match.params.id} />
-        <br />
-        <br />
+        <br /><br /><br /><br />
       </div>
     );
   }
 }
-const mapStateToProps = ({ allposts, posts, comments, auth }) => {
+const mapStateToProps = ({ allposts, comments, auth }) => {
   return {
     allposts,
     comments,

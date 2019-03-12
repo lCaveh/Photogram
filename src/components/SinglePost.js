@@ -11,6 +11,7 @@ class SinglePost extends Component {
     const backStyle = {
       backgroundImage: `url(${this.props.post.image})`
     };
+    console.log(this.props.post)
     return (
       <div>
         <div className="uk-comment">
@@ -34,7 +35,7 @@ class SinglePost extends Component {
             </div>
           </header>
           <div className="uk-comment-body">
-            <Link to={`/${this.props.post.userId}/post/${this.props.id}`} params={{ post: this.props.post }}>
+            <Link to={`/${this.props.post.userId}/post/${this.props.id}`} >
               <div
                 className="uk-height-small uk-background-cover uk-light uk-flex uk-flex-top"
                 data-uk-parallax="bgy: -20"
@@ -42,16 +43,20 @@ class SinglePost extends Component {
               />
             </Link>
           </div>
-          {this.props.auth ? (
+          
+          {this.props.auth ? 
             <div>
-              <span>🖤❤️</span>
+              <span>
+              {this.props.post.likes.includes(this.props.auth.uid)?
+                <span>❤️</span>:<span>🖤</span>}
+              </span>
               <span>💬</span>
               <span>🗑️</span>
               <span>🖊️</span>
             </div>
-          ) : (
+           : 
             <div></div>
-          )}
+          }
         </div>
         <p>{this.props.post.content}</p>
       </div>
