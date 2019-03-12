@@ -26,7 +26,7 @@ class App extends Component {
             <Route path='/' component={AllPosts} exact />
             <Route path='/privateposts' component={PrivatePosts} />
             <Route path="/profile" component={Profile} />
-            <Route path="/post/:id" component={Post} />
+            <Route path="/:userid/post/:id" component={Post} />
           </Switch>
         </div>
       </BrowserRouter>
