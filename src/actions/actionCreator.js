@@ -16,8 +16,6 @@ export const removePost = (removePostId, uid) => async dispatch => {
 };
 
 export const postLikesUpdate = (postId, postUserId,likes) => async dispatch => {
- 
- console.log(postId, postUserId,likes) 
  postsRef
     .child(postUserId)
     .child(postId)

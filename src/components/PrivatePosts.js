@@ -15,7 +15,7 @@ class PrivatePosts extends Component {
     render() {
         return (
             <div>
-                {!this.props.posts || this.props.posts === "loading" ?
+                {!this.props.auth || !this.props.posts || this.props.posts === "loading" ?
                     <div className="uk-position-center" ><img className="loading" src={Loading}/></div> :
                     <div className="uk-grid-match uk-child-width-1-3@m uk-text-center" data-uk-grid>
                         {
