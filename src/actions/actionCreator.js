@@ -71,6 +71,14 @@ export const addComment = (newComment, uid) => async dispatch => {
     });
   };
 
+  export const commentLikesUpdate = (commentId, postId,likes) => async dispatch => {
+    commentsRef
+       .child(postId)
+       .child(commentId)
+       .child('likes')
+       .set(likes)
+   };
+
 export const fetchUser = () => dispatch => {
   authRef.onAuthStateChanged(user => {
     if (user) {

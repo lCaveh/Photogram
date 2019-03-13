@@ -6,7 +6,7 @@
 
 ## Description
 
-_This web application allows the clients to see other user's photos, comments and like. However to make a new post, comment or like others images the clients need to login with their Google account by clicking on top left navigation bar. After login as a user, the client can create a new post by uploading a photo from his/her device and writing a content for it under profile section. This post will be accessible in both "private Posts" and "All Posts" after that. All login users can write a comment for a post or like it. The total likes and comments will be shown underneath each post._
+_Photogram is a social media photo base application that allows the users to upload photos and discuss about them. It allows the clients to see other user's photos, comments and likes, but to make a new post, comment or like others images the clients need to login with their Google account by clicking on top left navigation bar. After login as a user, the client can create a new post by uploading a photo from his/her device and writing a content for it under profile section. This post will be accessible in both "private Posts" and "All Posts" after that. All login users can write a comment for a post or like it. The total likes and comments will be shown underneath each post._
 
 ## Live Project
 

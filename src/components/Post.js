@@ -126,6 +126,7 @@ class Post extends Component {
                 <Comment
                   key={key}
                   id={key}
+                  postId={this.props.match.params.id}
                   comment={this.props.comments[key]}
                 />
               );
