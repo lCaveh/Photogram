@@ -40,9 +40,9 @@ export const addComment = (newComment, uid) => async dispatch => {
       .set(newComment);
   };
   
-  export const removeComment = (removeCommentId, uid) => async dispatch => {
+  export const removeComment = (removeCommentId, postId) => async dispatch => {
     commentsRef
-      .child(uid)
+      .child(postId)
       .child(removeCommentId)
       .remove();
   };

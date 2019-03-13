@@ -22,7 +22,9 @@ class AddPost extends Component {
     this.setState({
       content: event.target[1].value
     });
-    const mainImage = storage.ref().child(`posts/${this.state.picture.name}`);
+    event.target[0].value=""
+    const date = new Date;
+    const mainImage = storage.ref().child(`posts/${date.getTime()}${this.state.picture.name}`);
     mainImage.put(this.state.picture).then(snapshot => {
       mainImage.getDownloadURL().then(url => {
         this.setState({
@@ -38,7 +40,6 @@ class AddPost extends Component {
           userImage: this.props.auth.photoURL,
           userId: this.props.auth.uid
         };
-
         this.props.addPost(post, this.props.auth.uid);
       });
     });
@@ -69,10 +70,11 @@ class AddPost extends Component {
               onChange={event => {
                 this.displayPicture(event);
               }}
+              required
             />
             <br />
             <label>Content:</label>
-            <textarea className="uk-textarea" />
+            <textarea className="uk-textarea" required/>
             <br />
             <br />
             <button className="uk-button uk-button-default" type="submit">

@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import * as actions from "../actions/actionCreator";
 import SinglePost from './SinglePost'
 import UIkit from "uikit";
+import Loading from '../images/loading.gif'
+
 
 UIkit.grid();
 
@@ -13,8 +15,8 @@ class PrivatePosts extends Component {
     render() {
         return (
             <div>
-                {this.props.posts === "loading" ?
-                    <div className="uk-child-width-expand@s uk-text-center" data-uk-grid>Loading</div> :
+                {!this.props.posts || this.props.posts === "loading" ?
+                    <div className="uk-position-center" ><img className="loading" src={Loading}/></div> :
                     <div className="uk-grid-match uk-child-width-1-3@m uk-text-center" data-uk-grid>
                         {
                             Object.keys(this.props.posts).map((key) => {

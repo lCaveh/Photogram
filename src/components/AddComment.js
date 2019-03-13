@@ -14,7 +14,8 @@ class AddComment extends Component {
             content: event.target[0].value,
             likes: [""],
             userName: this.props.auth.displayName,
-            userImage: this.props.auth.photoURL
+            userImage: this.props.auth.photoURL,
+            userId: this.props.auth.uid
         }
         this.props.addComment(comment, this.props.id);
         event.target[0].value = "";

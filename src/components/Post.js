@@ -10,7 +10,9 @@ class Post extends Component {
     this.props.fetchComments(this.props.match.params.id);
   }
   render() {
-    const post = this.props.allposts[this.props.match.params.userid][this.props.match.params.id];
+    const post = this.props.allposts[this.props.match.params.userid][
+      this.props.match.params.id
+    ];
     console.log(post);
     return (
       <div>
@@ -22,7 +24,7 @@ class Post extends Component {
             >
               <div className="uk-width-auto">
                 <img
-                  className="uk-comment-avatar"
+                  className="uk-comment-avatar uk-border-circle"
                   src={post.userImage}
                   width="20"
                   height="20"
@@ -36,19 +38,28 @@ class Post extends Component {
               </div>
             </header>
             <div className="uk-comment-body">
-              <img className="uk-comment-avatar post-image" src={post.image} alt=""/>
+              <img
+                className="uk-comment-avatar post-image"
+                src={post.image}
+                alt=""
+              />
             </div>
-            {this.props.auth ? 
+            {this.props.auth ? (
               <div>
-                {post.likes.includes(this.props.auth.uid)?
-                <span>❤️</span>:<span>🖤</span>}
-                <span>💬</span>
+                  <span>
+                {post.likes.includes(this.props.auth.uid) ? (
+                  <span>❤️</span>
+                ) : (
+                  <span>🖤</span>
+                )}
+                {post.likes.length-1} liked
+                </span>
                 <span>🗑️</span>
                 <span>🖊️</span>
               </div>
-             : 
+            ) : (
               <div />
-            }
+            )}
           </div>
           <p>{post.content}</p>
         </div>
@@ -69,7 +80,10 @@ class Post extends Component {
           </div>
         )}
         <AddComment id={this.props.match.params.id} />
-        <br /><br /><br /><br />
+        <br />
+        <br />
+        <br />
+        <br />
       </div>
     );
   }

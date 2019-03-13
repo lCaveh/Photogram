@@ -19,6 +19,9 @@ code {
 .post-image {
   width: 100%;
 }
+.loading {
+  width: 10%;
+}
 .comment-container {
   display: grid;
   grid-template-columns: 20px 10px auto 10px 20px;

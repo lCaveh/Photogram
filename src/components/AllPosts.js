@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import * as actions from "../actions/actionCreator";
 import { connect } from "react-redux";
 import SinglePost from './SinglePost'
+import Loading from '../images/loading.gif'
+
 
 class AllPosts extends Component {
     componentWillMount() {
@@ -9,11 +11,11 @@ class AllPosts extends Component {
         this.props.fetchAllPosts();
     }
     render() {
-        console.log("all posts")
+        console.log(this.props)
         return (
             <div>
-                {this.props.allposts === "loading" ?
-                    <div className="uk-child-width-expand@s uk-text-center" data-uk-grid>Loading</div> :
+                {!this.props.allposts || this.props.allposts === "loading" ?
+                    <div className="uk-position-center" ><img className="loading" src={Loading}/></div> :
                     <div className="uk-grid-match uk-child-width-1-3@m uk-text-center" data-uk-grid>
                         {
                             Object.values(this.props.allposts).map((item) => {
