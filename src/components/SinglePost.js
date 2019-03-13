@@ -7,15 +7,23 @@ import { connect } from "react-redux";
 UIkit.parallax();
 
 class SinglePost extends Component {
-
-  deleteHandler(){
-    this.props.removePost(this.props.id,this.props.auth.uid)
+  deleteHandler() {
+    this.props.removePost(this.props.id, this.props.auth.uid);
+  }
+  likesHandler() {
+    const likes = this.props.post.likes;
+    if (likes.includes(this.props.auth.uid)){
+    const removedUser = likes.filter(element=>element !=this.props.auth.uid )
+    this.props.postLikesUpdate(this.props.id, this.props.post.userId, removedUser)
+    } else {
+    likes.push(this.props.auth.uid);
+    this.props.postLikesUpdate(this.props.id, this.props.post.userId, likes);
+    }
   }
   render() {
     const backStyle = {
       backgroundImage: `url(${this.props.post.image})`
     };
-    console.log(this.props);
     return (
       <div>
         <div className="uk-comment uk-text-left">
@@ -47,22 +55,22 @@ class SinglePost extends Component {
               />
             </Link>
           </div>
-
+          {this.props.post.likes.length - 1} liked
           {this.props.auth ? (
             <div>
-              <span>
+              <a
+                onClick={() => {
+                  this.likesHandler();
+                }}
+              >
                 {this.props.post.likes.includes(this.props.auth.uid) ? (
-                  <span>❤️</span>
+                  <span>👎</span>
                 ) : (
-                  <span>🖤</span>
+                  <span>👍</span>
                 )}
-                {this.props.post.likes.length-1} liked
-              </span>
+              </a>
               {this.props.auth.uid === this.props.post.userId ? (
-                <span>
-                  <a onClick={this.deleteHandler.bind(this)} >🗑️</a>
-                  <span>🖊️</span>
-                </span>
+                <a onClick={this.deleteHandler.bind(this)}>🗑️</a>
               ) : (
                 <span />
               )}

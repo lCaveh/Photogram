@@ -5,15 +5,35 @@ import AddComment from "./AddComment";
 import Comment from "./Comment";
 
 class Post extends Component {
+  constructor(props) {
+    super(props);
+    this.editHandler = this.editHandler.bind(this);
+  }
   componentWillMount() {
     this.props.fetchAllPosts();
     this.props.fetchComments(this.props.match.params.id);
+  }
+
+  editHandler(post) {
+    console.log("edit");
+  }
+  likesHandler() {
+    const post = this.props.allposts[this.props.match.params.userid][
+      this.props.match.params.id
+    ];
+    const likes = post.likes;
+    if (likes.includes(this.props.auth.uid)){
+    const removedUser = likes.filter(element=>element !=this.props.auth.uid )
+    this.props.postLikesUpdate(this.props.match.params.id, post.userId, removedUser)
+    } else {
+    likes.push(this.props.auth.uid);
+    this.props.postLikesUpdate(this.props.match.params.id, post.userId, likes);
+    }
   }
   render() {
     const post = this.props.allposts[this.props.match.params.userid][
       this.props.match.params.id
     ];
-    console.log(post);
     return (
       <div>
         <div>
@@ -44,18 +64,32 @@ class Post extends Component {
                 alt=""
               />
             </div>
+            {post.likes.length - 1} liked
             {this.props.auth ? (
               <div>
-                  <span>
-                {post.likes.includes(this.props.auth.uid) ? (
-                  <span>❤️</span>
+                <a
+                  onClick={() => {
+                    this.likesHandler();
+                  }}
+                >
+                  {post.likes.includes(this.props.auth.uid) ? (
+                    <span>👎</span>
+                  ) : (
+                    <span>
+                    👍</span>
+                  )}
+                </a>
+                {this.props.auth.uid === post.userId ? (
+                  <a
+                    onClick={post => {
+                      this.editHandler(post);
+                    }}
+                  >
+                    🖊️
+                  </a>
                 ) : (
-                  <span>🖤</span>
+                  <span />
                 )}
-                {post.likes.length-1} liked
-                </span>
-                <span>🗑️</span>
-                <span>🖊️</span>
               </div>
             ) : (
               <div />
