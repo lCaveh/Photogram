@@ -46,18 +46,22 @@ class Comment extends Component {
           <span className="comment-content">
             {this.props.comment.userName} - {this.props.comment.content}
           </span>
-          <a
-            onClick={() => {
-              this.likesHandler();
-            }}
-            className="comment-like"
-          >
-            {this.props.comment.likes.includes(this.props.auth.uid) ? (
-              <span>❤️</span>
-            ) : (
-              <span>♡</span>
-            )}
-          </a>
+          {this.props.auth ? (
+            <a
+              onClick={() => {
+                this.likesHandler();
+              }}
+              className="comment-like"
+            >
+              {this.props.comment.likes.includes(this.props.auth.uid) ? (
+                <span>❤️</span>
+              ) : (
+                <span>♡</span>
+              )}
+            </a>
+          ) : (
+            <span />
+          )}
         </div>
         <p>
           {this.props.comment.likes.length - 1 < 2 ? (
@@ -65,20 +69,30 @@ class Comment extends Component {
           ) : (
             <span>{this.props.comment.likes.length - 1} likes</span>
           )}
-          {this.props.auth.uid === this.props.comment.userId ? (
-            <a
-              onClick={() => {
-                this.editHandler();
-              }}
-            >
-              🖊️
-            </a>
+          {this.props.auth ? (
+            <span>
+              {this.props.auth.uid === this.props.comment.userId ? (
+                <a
+                  onClick={() => {
+                    this.editHandler();
+                  }}
+                >
+                  🖊️
+                </a>
+              ) : (
+                <span />
+              )}
+            </span>
           ) : (
             <span />
           )}
         </p>
         {this.state.editAccess ? (
-          <EditComment comment={this.props.comment} commentId={this.props.id} postId={this.props.postId}/>
+          <EditComment
+            comment={this.props.comment}
+            commentId={this.props.id}
+            postId={this.props.postId}
+          />
         ) : (
           <div />
         )}
