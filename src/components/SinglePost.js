@@ -7,9 +7,7 @@ import { connect } from "react-redux";
 UIkit.parallax();
 
 class SinglePost extends Component {
-  // deleteHandler() {
-  //   this.props.removePost(this.props.id, this.props.auth.uid);
-  // }
+
   likesHandler() {
     const likes = this.props.post.likes;
     if (likes.includes(this.props.auth.uid)){

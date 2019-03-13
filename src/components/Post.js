@@ -3,10 +3,14 @@ import { connect } from "react-redux";
 import * as actions from "../actions/actionCreator";
 import AddComment from "./AddComment";
 import Comment from "./Comment";
+import EditPost from "./EditPost";
 
 class Post extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      editAccess: false
+    };
     this.editHandler = this.editHandler.bind(this);
   }
   componentWillMount() {
@@ -14,20 +18,32 @@ class Post extends Component {
     this.props.fetchComments(this.props.match.params.id);
   }
 
-  editHandler(post) {
-    console.log("edit");
+  editHandler() {
+    this.setState({
+      editAccess: !this.state.editAccess
+    });
   }
   likesHandler() {
     const post = this.props.allposts[this.props.match.params.userid][
       this.props.match.params.id
     ];
     const likes = post.likes;
-    if (likes.includes(this.props.auth.uid)){
-    const removedUser = likes.filter(element=>element !=this.props.auth.uid )
-    this.props.postLikesUpdate(this.props.match.params.id, post.userId, removedUser)
+    if (likes.includes(this.props.auth.uid)) {
+      const removedUser = likes.filter(
+        element => element != this.props.auth.uid
+      );
+      this.props.postLikesUpdate(
+        this.props.match.params.id,
+        post.userId,
+        removedUser
+      );
     } else {
-    likes.push(this.props.auth.uid);
-    this.props.postLikesUpdate(this.props.match.params.id, post.userId, likes);
+      likes.push(this.props.auth.uid);
+      this.props.postLikesUpdate(
+        this.props.match.params.id,
+        post.userId,
+        likes
+      );
     }
   }
   render() {
@@ -75,8 +91,7 @@ class Post extends Component {
                   {post.likes.includes(this.props.auth.uid) ? (
                     <span>👎</span>
                   ) : (
-                    <span>
-                    👍</span>
+                    <span>👍</span>
                   )}
                 </a>
                 {this.props.auth.uid === post.userId ? (
@@ -97,6 +112,10 @@ class Post extends Component {
           </div>
           <p>{post.content}</p>
         </div>
+        {this.state.editAccess?
+    <EditPost post={post} postId={this.props.match.params.id}/>:
+    <div/>   
+    }
         <hr />
         {this.props.comments === "..." || !this.props.comments ? (
           <div>Loading</div>
