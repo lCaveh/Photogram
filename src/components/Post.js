@@ -112,10 +112,11 @@ class Post extends Component {
           </div>
           <p>{post.content}</p>
         </div>
-        {this.state.editAccess?
-    <EditPost post={post} postId={this.props.match.params.id}/>:
-    <div/>   
-    }
+        {this.state.editAccess ? (
+          <EditPost post={post} postId={this.props.match.params.id} />
+        ) : (
+          <div />
+        )}
         <hr />
         {this.props.comments === "..." || !this.props.comments ? (
           <div>Loading</div>

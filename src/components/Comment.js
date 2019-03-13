@@ -1,8 +1,20 @@
 import React, { Component } from "react";
 import * as actions from "../actions/actionCreator";
 import { connect } from "react-redux";
+import EditComment from "./EditComment";
 
 class Comment extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      editAccess: false
+    };
+  }
+  editHandler() {
+    this.setState({
+      editAccess: !this.state.editAccess
+    });
+  }
   likesHandler() {
     const likes = this.props.comment.likes;
     if (likes.includes(this.props.auth.uid)) {
@@ -10,17 +22,13 @@ class Comment extends Component {
         element => element != this.props.auth.uid
       );
       this.props.commentLikesUpdate(
-          this.props.id,
+        this.props.id,
         this.props.postId,
         removedUser
       );
     } else {
       likes.push(this.props.auth.uid);
-      this.props.commentLikesUpdate(
-        this.props.id,
-        this.props.postId,
-        likes
-      );
+      this.props.commentLikesUpdate(this.props.id, this.props.postId, likes);
     }
   }
   render() {
@@ -57,7 +65,23 @@ class Comment extends Component {
           ) : (
             <span>{this.props.comment.likes.length - 1} likes</span>
           )}
+          {this.props.auth.uid === this.props.comment.userId ? (
+            <a
+              onClick={() => {
+                this.editHandler();
+              }}
+            >
+              🖊️
+            </a>
+          ) : (
+            <span />
+          )}
         </p>
+        {this.state.editAccess ? (
+          <EditComment comment={this.props.comment} commentId={this.props.id} postId={this.props.postId}/>
+        ) : (
+          <div />
+        )}
       </div>
     );
   }
