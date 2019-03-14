@@ -75,7 +75,7 @@ class Post extends Component {
             </header>
             <div className="uk-comment-body">
               <img
-                className="uk-comment-avatar post-image"
+                className="uk-comment-avatar post-image uk-animation-scale-up"
                 src={post.image}
                 alt=""
               />
@@ -134,7 +134,7 @@ class Post extends Component {
         {this.props.comments === "loading" || !this.props.comments ? (
           <div>Loading</div>
         ) : (
-          <div>
+          <div >
             {Object.keys(this.props.comments).map(key => {
               return (
                 <div key={key}>

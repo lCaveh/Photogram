@@ -26,6 +26,15 @@ code {
 .loading {
   width: 10%;
 }
+.upload-image {
+  position: fixed;
+  z-index: 100;
+  top:0;
+  left:0;
+width:100%;
+height: 100%;
+object-fit: cover;
+}
 .comment-container {
   display: grid;
   grid-template-columns: 20px 10px auto 10px 20px;

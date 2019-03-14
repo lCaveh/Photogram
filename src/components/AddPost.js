@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../actions/actionCreator";
 import { storage } from "../firebase";
+import UploadImage from '../images/Upload.svg'
 
 class AddPost extends Component {
   constructor(state) {
@@ -10,7 +11,8 @@ class AddPost extends Component {
       picture: null,
       pictureUrl: null,
       image: null,
-      content: ""
+      content: "",
+      showUploadImage: false
     };
   }
   componentWillMount() {
@@ -20,7 +22,8 @@ class AddPost extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     this.setState({
-      content: event.target[1].value
+      content: event.target[1].value,
+      showUploadImage: true
     });
     event.target[0].value=""
     const date = new Date;
@@ -29,7 +32,8 @@ class AddPost extends Component {
       mainImage.getDownloadURL().then(url => {
         this.setState({
           image: url,
-          pictureUrl: ""
+          pictureUrl: "",
+          showUploadImage: false
         });
         const post = {
           image: this.state.image,
@@ -62,6 +66,7 @@ class AddPost extends Component {
       <div>
         {this.props.auth ? (
           <form onSubmit={this.handleFormSubmit}>
+          {this.state.showUploadImage ? <img className="upload-image" src={UploadImage}/>:<span/>}
             <img src={this.state.pictureUrl} />
             <input
               type="file"
@@ -80,6 +85,7 @@ class AddPost extends Component {
             <button className="uk-button uk-button-default" type="submit">
               Submit
             </button>
+            <br/><br/><br/>
           </form>
         ) : (
           <p>Please login to be able write a post</p>

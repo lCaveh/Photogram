@@ -16,7 +16,7 @@ class AllPosts extends Component {
             <div>
                 {!this.props.allposts || this.props.allposts === "loading" ?
                     <div className="uk-position-center" ><img className="loading" src={Loading}/></div> :
-                    <div className="uk-grid-match uk-child-width-1-3@m uk-text-center" data-uk-grid>
+                    <div className="uk-grid-match uk-child-width-1-3@m uk-text-center" data-uk-grid data-uk-scrollspy="cls: uk-animation-fade; target: > div > .uk-card; delay: 200; repeat: true">
                         {
                             Object.values(this.props.allposts).map((item) => {
                                 return Object.keys(item).map((key)=>{
