@@ -18,9 +18,12 @@ class Header extends Component {
                                         width="20"
                                         height="20"
                                         alt="Border circle"
-                                    />  {this.props.auth.displayName}
+                                    />  {this.props.auth.displayName.split(' ')[0]}
                                 </span>
                             )}</span>
+                    </div>
+                    <div className="uk-navbar-center uk-logo">
+                            Photogram
                     </div>
                 </nav>
             </div>

@@ -44,7 +44,7 @@ class Comment extends Component {
             />
           </span>
           <span className="comment-content">
-            {this.props.comment.userName} - {this.props.comment.content}
+            {this.props.comment.userName.split(' ')[0]} - {this.props.comment.content}
           </span>
           {this.props.auth ? (
             <a

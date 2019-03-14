@@ -69,7 +69,7 @@ class Post extends Component {
               </div>
               <div className="uk-width-expand">
                 <h4 className="uk-comment-title uk-margin-remove">
-                  <a className="uk-link-reset">{post.userName}</a>
+                  <a className="uk-link-reset">{post.userName.split(' ')[0]}</a>
                 </h4>
               </div>
             </header>
@@ -81,8 +81,21 @@ class Post extends Component {
               />
             </div>
             {post.likes.length - 1} liked
-            {this.props.auth ? (
-              <div>
+
+          </div>
+          <div className="comment-container">
+          <span className="comment-image">
+            <img
+              src={post.userImage}
+              width="20"
+              height="20"
+              className="uk-border-circle"
+            />
+          </span>
+          <span className="comment-content">{post.userName.split(' ')[0]} - {post.content}</span>
+          <span className="comment-like">
+          {this.props.auth ? (
+              <span>
                 <a
                   onClick={() => {
                     this.likesHandler();
@@ -105,12 +118,12 @@ class Post extends Component {
                 ) : (
                   <span />
                 )}
-              </div>
+              </span>
             ) : (
               <div />
             )}
+          </span>
           </div>
-          <p>{post.content}</p>
         </div>
         {this.state.editAccess ? (
           <EditPost post={post} postId={this.props.match.params.id} />

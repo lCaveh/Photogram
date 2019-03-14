@@ -30,7 +30,7 @@ class AllPosts extends Component {
                         }
                     </div>
                 }
-                <br/><br/><br/>
+                <br/><br/><br/><br /><br />
             </div>
         )
     }

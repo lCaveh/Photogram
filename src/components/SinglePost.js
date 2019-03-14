@@ -40,7 +40,7 @@ class SinglePost extends Component {
             </div>
             <div className="uk-width-expand">
               <h4 className="uk-comment-title uk-margin-remove">
-                <a className="uk-link-reset">{this.props.post.userName}</a>
+                <a className="uk-link-reset">{this.props.post.userName.split(' ')[0]}</a>
               </h4>
             </div>
           </header>
@@ -54,8 +54,20 @@ class SinglePost extends Component {
             </Link>
           </div>
           {this.props.post.likes.length - 1} liked
+
+        </div>
+        <div className="comment-container">
+        <span className="comment-image">
+            <img
+              src={this.props.post.userImage}
+              width="20"
+              height="20"
+              className="uk-border-circle"
+            />
+          </span>
+          <span className="comment-content uk-text-left">{this.props.post.userName.split(' ')[0]} - {this.props.post.content}</span>
           {this.props.auth ? (
-            <div>
+            <span className="comment-like">
               <a
                 onClick={() => {
                   this.likesHandler();
@@ -72,12 +84,11 @@ class SinglePost extends Component {
               ) : (
                 <span />
               )}
-            </div>
+            </span>
           ) : (
             <div />
           )}
         </div>
-        <p className="uk-text-left">{this.props.post.content}</p>
       </div>
     );
   }
