@@ -118,18 +118,28 @@ class Post extends Component {
           <div />
         )}
         <hr />
-        {this.props.comments === "..." || !this.props.comments ? (
+        {this.props.comments === "loading" || !this.props.comments ? (
           <div>Loading</div>
         ) : (
           <div>
             {Object.keys(this.props.comments).map(key => {
               return (
+                <div key={key}>
                 <Comment
-                  key={key}
                   id={key}
                   postId={this.props.match.params.id}
                   comment={this.props.comments[key]}
                 />
+                {this.props.auth?
+                <span>
+                  {this.props.comments[key].userId === this.props.auth.uid?
+                <a className="uk-text-right" onClick={()=>this.props.removeComment(key, this.props.match.params.id)}>🗑️</a>:
+                  <span/>
+                  }
+                </span>:
+                <span/>
+              }
+                </div>
               );
             })}
           </div>

@@ -9,7 +9,6 @@ class EditPost extends Component {
     const content= event.target[0].value;
     this.props.editPost(this.props.postId,this.props.auth.uid,content)
     event.target[0].value=""
-
   };
 
   render() {
